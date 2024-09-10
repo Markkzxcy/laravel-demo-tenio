@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grade Calculator</title>
+    <style>
+        .myStyle{
+            background-color: coral;
+            padding: 16px; 
+        }
+        .myStyles{
+            background-color: coral;
+            padding: 16px; 
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <label for="Grade1">Grade 1:</label>
+        <input type="number" id="Grade1" name="num1" required>
+        <br>
+        <label for="Grade2">Grade 2:</label>
+        <br>
+        <input type="number" id="Grade2" name="num2" required>
+        <br>
+        <label for="Grade3">Grade 3:</label>
+        <br>
+        <input type="number" id="Grade3" name="num3" required>
+        <br>
+        <button onclick="add()">add</button>
+        <button onclick="remove()">remove</button>
+    </form>
+    <div id="myDIV">
+        <p> I am DIV</p>
+    </div>
+    <div id="myDIV1" class="myStyles">
+        <p>I am myDIV.</p>
+    </div>
+    <p id="Grade1Display"></p>
+    <p id="Grade2Display"></p>
+    <p id="Grade3Display"></p>
+    <p id="Average"></p>
+    <p id="LetterGrade"></p> 
+    <button id="pindota" onClick="clear()">Clear</button>
+
+    <script>
+        function add(){
+            const abc = document.getElementById('myDIV').classList;
+            abc.add("myStyle");
+        }
+        function remove(){
+            document.getElementById("myDIV").classList.remove("myStyle");
+        }
+        function clear() {
+            Grade1.value = '';
+            Grade2.value = '';
+            Grade3.value = '';
+            Grade1Display.textContent = '';
+            Grade2Display.textContent = '';
+            Grade3Display.textContent = '';
+            Average.textContent = '';
+            LetterGrade.textContent = '';
+        }
+        function CalculateGrades() {
+         
+            const Grade1 = parseFloat(document.getElementById('Grade1').value) || 0;
+            const Grade2 = parseFloat(document.getElementById('Grade2').value) || 0;
+            const Grade3 = parseFloat(document.getElementById('Grade3').value) || 0;
+
+           
+            document.getElementById('Grade1Display').textContent = "Grade 1: " + Grade1;
+            document.getElementById('Grade2Display').textContent = "Grade 2: " + Grade2;
+            document.getElementById('Grade3Display').textContent = "Grade 3: " + Grade3;
+
+           
+            const average = (Grade1 + Grade2 + Grade3) / 3;
+            document.getElementById('Average').textContent = "Average: " + average.toFixed(2);
+
+            
+            let letterGrade = '';
+            if (average >= 90) {
+                letterGrade = 'A';
+            } else if (average >= 80) {
+                letterGrade = 'B';
+            } else if (average >= 75) {
+                letterGrade = 'C';
+            } else if (average <= 74) {
+                letterGrade = 'D (Fail)';
+            } 
+            document.getElementById('LetterGrade').textContent = "Equivalent Grade: " + letterGrade;
+        }
+
+        
+        document.getElementById('Grade1').addEventListener('input', CalculateGrades);
+        document.getElementById('Grade2').addEventListener('input', CalculateGrades);
+        document.getElementById('Grade3').addEventListener('input', CalculateGrades);
+
+        pindota.addEventListener('click', clear);
+        
+    </script>
+</body>
+</html>

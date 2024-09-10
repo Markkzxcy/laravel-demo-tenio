@@ -8,8 +8,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/calculator', [CalculatorController::class,'showCalculatorPage']);
-    
+Route::get('/calculator', [CalculatorController::class,'showCalculatorPage']);   
+Route::post('/calculate' , [CalculatorController:: class,'calculates'])->name('calculated');
 
 Route::get('/index', function () {
     return view('mypages.index');
